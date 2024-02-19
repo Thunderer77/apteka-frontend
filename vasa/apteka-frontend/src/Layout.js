@@ -8,6 +8,7 @@ const Layout = () => {
               <Link to='/users'>Пользователи</Link>
               <Link to='/checks'>Чеки</Link>
               <Link to='/recipes'>Рецепты</Link>
+              <Link to='/logout'>Выход</Link>
               <Link to='/meds'>Медикаменты</Link>
           </header>
           <main className='container'>
