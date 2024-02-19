@@ -73,7 +73,7 @@ class Recipes extends Component {
         // Рендеринг данных
         return (
             <div className="container">
-                <h1>APTEKA</h1>
+                <h1>Рецепты</h1>
                 <table className="table table-striped">
                     <thead>
                     <tr>
@@ -95,7 +95,7 @@ class Recipes extends Component {
                                         }
                                     </td>
                                 } else if (index == 2) {
-                                    return <td key={index}> {value} </td>
+                                    return <td key={index}> {meds[value-1].med_n} </td>
                                 } else return <td key={index}>{value}</td>
                             })}
                         </tr>

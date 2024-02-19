@@ -1,20 +1,15 @@
 import './App.css';
 import {Component} from "react";
 import Users from "./Users";
-import {Routes, Route} from "react-router-dom"
+import {Route, Routes} from "react-router-dom"
 import {Layout} from "./Layout";
 import Checks from "./Checks";
 import Recipes from "./Recipes";
 import Medicine from "./Medicine";
-
-const MainPage=()=> {
-    return <h1>WELCOME</h1>;
-}
-
-const Page404=()=> {
-    return <div> <h1>Нет такой страницы</h1>
-        <a href='/'>На главную</a></div>;
-}
+import MedicineDetail from "./MedicineDetail";
+import {Page404} from "./Page404";
+import {UserProvider} from "./UserProvider";
+import LoginForm from "./LoginForm";
 
 class App extends Component {
     render() {
@@ -22,14 +17,17 @@ class App extends Component {
             <>
                 <Routes>
                     <Route path='/' element={<Layout/>}>
-                        <Route index element={<MainPage/>}/>
+                        <Route index element={<LoginForm/>}/>
                         <Route path='users' element={<Users/>}/>
+                        <Route path='users/:id' element={<UserProvider/>}/>
                         <Route path='checks' element={<Checks/>}/>
                         <Route path='recipes' element={<Recipes/>}/>
                         <Route path='meds' element={<Medicine/>}/>
                         <Route path='*' element={<Page404/>}/>
+                        <Route path="meds_el/:id" element={<MedicineDetail/>}/>
                     </Route>
                 </Routes>
+
             </>
         );
     }

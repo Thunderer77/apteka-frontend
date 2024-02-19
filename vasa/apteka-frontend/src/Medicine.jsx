@@ -1,4 +1,6 @@
-import { Component } from "react";
+// Medicine.js
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Medicine extends Component {
     constructor(props) {
@@ -9,7 +11,7 @@ class Medicine extends Component {
             error: null
         };
     }
-//https://thunderer77.pythonanywhere.com/
+
     componentDidMount() {
         fetch('http://127.0.0.1:8000/meds/')
             .then(response => {
@@ -29,36 +31,43 @@ class Medicine extends Component {
     render() {
         const { data, isLoading, error } = this.state;
 
-        // Обработка загрузки данных
         if (isLoading) {
             return <div>Loading...</div>;
         }
 
-        // Обработка ошибки при загрузке данных
         if (error) {
             return <div>Error: {error.message}</div>;
         }
 
-        // Рендеринг данных
         return (
             <div className="container">
-                <h1>APTEKA</h1>
+                <h1>Медикаменты</h1>
                 <table className="table table-striped">
                     <thead>
-                    <tr>
-                        {Object.keys(data[0]).map(key => (
-                            <th key={key}>{key}</th>
-                        ))}
-                    </tr>
+                        <tr>
+                            <th>№</th>
+                            <th>Лекарство</th>
+                            <th>Дозировка</th>
+                            <th>Цена</th>
+                            <th>Срок годности</th>
+                            <th>Производитель</th>
+                            <th>Эффект</th>
+                            <th>Количество</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    {data.map((item, index) => (
-                        <tr key={index}>
-                            {Object.values(item).map((value, index) => (
-                                <td key={index}>{value}</td>
-                            ))}
-                        </tr>
-                    ))}
+                        {data.map((item, index) => (
+                            <tr key={index}>
+                                <td>{index + 1}</td>
+                                <td><Link to={{ pathname: `/meds_el/${item.id}`, state: { id: item.id } }}>{item.med_n}</Link></td>
+                                <td>{item.dose}</td>
+                                <td>{item.price}</td>
+                                <td>{item.until}</td>
+                                <td>{item.dev}</td>
+                                <td>{item.effect}</td>
+                                <td>{item.amount}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
