@@ -28,7 +28,6 @@ const LoginForm = () => {
                 return response.json();
             })
             .then(data => {
-                console.log(data)
                 data = data.find(x => x.login === loginData.username && x.password === loginData.password)
                 setUser(data);
                 setIsLoading(false)

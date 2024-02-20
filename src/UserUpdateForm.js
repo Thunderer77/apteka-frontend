@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {useParams} from "react-router";
-import userEvent from "@testing-library/user-event";
 
 function getCookie(name) {
     let cookieValue = null;
@@ -66,7 +65,7 @@ function UserUpdateForm(props) {
             });
     };
 
-    if (!item) return null; // Если данные еще не загружены, возвращаем null
+    if (!item) return null;
 
     return (<form onSubmit={handleSubmit}>
             <div>
@@ -81,13 +80,13 @@ function UserUpdateForm(props) {
                 <label>Дата рождения:</label>
                 <input type="date" name="birth" value={item.birth} onChange={handleChange}/>
             </div>
-            <div>
+          {item?.role === 0 ? <div>
                 <label htmlFor="role">Роль:</label><br/>
                 <select id="role" name="role" onChange={handleChange} value={item.role}>
                     <option value="1">Клиент</option>
                     <option value="0">Админ</option>
                 </select>
-            </div>
+            </div> : null}
             <div>
                 <label htmlFor="gender">Пол:</label><br/>
                 <select id="gender" name="gender" onChange={handleChange} value={item.gender}>
@@ -104,10 +103,10 @@ function UserUpdateForm(props) {
                 <label>Пароль:</label>
                 <input type="password" name="password" value={item.password} onChange={handleChange}/>
             </div>
-            <div>
+        {item?.role === 0 ? <div>
                 <label>Баланс:</label>
                 <input type="number" name="balance" value={item.balance} onChange={handleChange}/>
-            </div>
+            </div> : null}
             <button type="submit" className='btn btn-primary mt-3'>Сохранить</button>
         </form>
     );

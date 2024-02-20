@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {useParams} from "react-router";
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 const withParams = Component => props => <Component {...props} params={useParams()}/>;
 
@@ -33,6 +34,21 @@ class MedicineDetail extends Component {
             });
     }
 
+    handleBuy = () => {
+        // Отправить запрос на сервер для покупки медикамента с идентификатором id
+        axios.get(`http://127.0.0.1:8000/meds/${id}/buyby/${1}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Failed to buy medicine");
+                }
+                alert("Медикамент успешно куплен!");
+            })
+            .catch((error) => {
+                console.error("Failed to buy medicine:", error);
+                alert("Ошибка покупки медикамента");
+            })
+    }
+
     render() {
         const {isLoading} = this.state;
         if (isLoading) {
@@ -57,7 +73,7 @@ class MedicineDetail extends Component {
                     </div>
                 </div>
 
-                <Link to="/meds" className="btn btn-primary mt-3">Купить</Link>
+                <Link to="/meds" onClick={handleBuy} className="btn btn-primary mt-3">Купить</Link>
                 <Link to="/meds" className="btn btn-primary mt-3">Назад к списку медикаментов</Link>
             </div>
         }
