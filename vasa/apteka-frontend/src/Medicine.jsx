@@ -70,6 +70,7 @@ class Medicine extends Component {
                         ))}
                     </tbody>
                 </table>
+                <div className="border"></div>
             </div>
         );
     }

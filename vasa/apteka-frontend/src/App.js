@@ -13,6 +13,7 @@ import LoginForm from "./LoginForm";
 import Profile from "./Profile";
 import RegisterForm from "./RegistrForm";
 import Logout from "./Logout";
+import UserUpdateForm from "./UserUpdateForm";
 
 class App extends Component {
     render() {
@@ -32,6 +33,7 @@ class App extends Component {
                             <Route path='meds' element={<Medicine/>}/>
                             <Route path='*' element={<Page404/>}/>
                             <Route path="meds_el/:id" element={<MedicineDetail/>}/>
+                            <Route path="user/:id/get" element={<UserUpdateForm/>}/>
                         </Route>
                     </Routes>
                 </UserProvider>

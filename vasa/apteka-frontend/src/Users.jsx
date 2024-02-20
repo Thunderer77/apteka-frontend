@@ -1,4 +1,7 @@
-import {Component} from "react";
+import React, {Component} from "react";
+import {Link} from "react-router-dom";
+import {useParams} from "react-router";
+const withParams = Component => props => <Component {...props} params={useParams()}/>;
 
 class Users extends Component {
     constructor(props) {
@@ -62,10 +65,13 @@ class Users extends Component {
                     {data.map((item, index) => (
                         <tr key={index}>
                             {Object.values(item).map((value, index) => {
-                                if (index == 6) {
-                                    return <td key={index}>{value.split('').map(c=>'*')}</td>
+                                if (index === 6) {
+                                    return <td key={index}>{value.split('').map(c => '*')}</td>
+                                } else if (index === 1) {
+                                    return <td key={index}><Link to={`/user/${item.id}/get`}>{value}</Link>
+                                    </td>
                                 } else
-                                return <td key={index}>{value}</td>
+                                    return <td key={index}>{value}</td>
                             })}
                         </tr>
                     ))}

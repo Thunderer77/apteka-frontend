@@ -56,6 +56,8 @@ class MedicineDetail extends Component {
                         <p className="card-text">Количество: {amount}</p>
                     </div>
                 </div>
+
+                <Link to="/meds" className="btn btn-primary mt-3">Купить</Link>
                 <Link to="/meds" className="btn btn-primary mt-3">Назад к списку медикаментов</Link>
             </div>
         }
